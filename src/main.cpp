@@ -1,4 +1,5 @@
 #include "game2048.hpp"
+#include <string>
 #include <ncurses.h>
 
 // Print game on screen
@@ -28,8 +29,11 @@ void display(const Game2048& game) {
 			}
 		}
 	}
+  std::string controls_string{"Controls - Arrow keys | r - reset | q - quit"};
+  mvaddstr(y - 1, (x -  controls_string.length()) / 2, controls_string.c_str());
+  mvchgat(y - 1, 0, -1, A_NORMAL, 3, NULL);
 	if (game.is_locked()) {
-		mvaddstr(6, (x - 9) / 2, "Game Over");
+		mvaddstr(y - 4, (x - 9) / 2, "Game Over");
 	}
 }
 
